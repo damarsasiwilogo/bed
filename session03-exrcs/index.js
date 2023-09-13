@@ -1,7 +1,7 @@
-import express from "express";
+// import express from "express";
 const express = require("express");
 
-const { createNewUsers, getUsersData } = require("./db");
+const { createNewUsers, getUserData } = require("./db");
 
 const PORT = 8000;
 
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/users", (req, res) => {
-  const users = getUsersData();
+  const users = getUserData();
   res.json(users);
 });
 
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(`Error: ${JSON.stringify(err)}`);
+  console.log(err);
   res.status(500).send("Something is wrong!");
 });
 
