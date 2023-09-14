@@ -1,21 +1,15 @@
 // import fs from "fs";
 const fs = require("fs");
 
-function getUserData() {
-  const db = fs.readFileSync("./db.json");
-  const json = String(db);
-  const obj = JSON.parse(json);
-  return obj.users;
-}
+const jsonPath = __dirname + "/db.json";
 
-exports.getUserData = getUserData;
+exports.read = () => {
+  const buffer = fs.readFileSync(jsonPath);
+  const json = JSON.parse(String(buffer));
+  return json;
+};
 
-function createNewUsers(newUser) {
-  const db = fs.readFileSync("./db.json");
-  const json = String(db);
-  const obj = JSON.parse(json);
-  obj.users.push(newUser);
-  fs.writeFileSync("./db.json", JSON.stringify(obj));
-}
-
-exports.createNewUsers = createNewUsers;
+exports.write = () => {
+  const raw = JSON.stringify(data, 0, 2);
+  fs.writeFileSync(jsonPath, raw);
+};

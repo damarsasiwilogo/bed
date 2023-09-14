@@ -1,1 +1,3 @@
-{"users":[{"nama":"damar","job":"petinju"},{"nama":"ronal","job":"pemabuk"},{"nama":"anida","job":"metaler"}]}
+{
+  "expenses": [{ "id": "1", "name": "bensin", "category": "transportasi", "createdAt": "" }]
+}
