@@ -5,37 +5,37 @@ show tables;
 -- create data
 
 INSERT INTO
-    students(
-        name,
-        description,
-        gender,
-        height,
-        isMarried,
-        pocketMoney,
-        score,
-        birthday,
-        lastseen
-    )
+  students(
+    name,
+    description,
+    gender,
+    height,
+    isMarried,
+    pocketMoney,
+    score,
+    birthday,
+    lastseen
+  )
 VALUES (
-        'damar',
-        'pernah gondrong waktu covid',
-        'Men',
-        180,
-        false,
-        40000000,
-        99.999,
-        DATE('1994-06-12'),
-        NOW()
-    ), (
-        'rizky',
-        'penikmat anime',
-        'Men',
-        170,
-        false,
-        90000000,
-        99.999,
-        DATE('2001-01-01'),
-        NOW()
+  'damar',
+  'pernah gondrong waktu covid',
+  'Men',
+  180,
+  false,
+  40000000,
+  99.999,
+  DATE('1994-06-12'),
+  NOW()
+  ), (
+    'rizky',
+    'penikmat anime',
+    'Men',
+    170,
+    false,
+    90000000,
+    99.999,
+    DATE('2001-01-01'),
+    NOW()
     );
 
 -- read data
