@@ -60,4 +60,4 @@ async function getUserWithProduct() {
   console.log(user.get({ plain: true }));
 }
 
-getUserWithProduct();
+getAll();
