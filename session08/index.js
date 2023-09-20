@@ -2,12 +2,14 @@ const { User } = require("./models");
 const { Op } = require("sequelize");
 
 async function create() {
-  const result = await User.create({
-    username: "jaka",
-    email: "jaka@mail.com",
-    password: "gembung123!",
-    name: "Jaka Tarub",
-  });
+  const result = await User.bulkCreate([
+    {
+      username: "jaka",
+      email: "jaka@mail.com",
+      password: "gembung123!",
+      name: "Jaka Tarub",
+    },
+  ]);
   console.log(result.get({ plain: true }));
 }
 
@@ -53,7 +55,7 @@ async function deleteData() {
 async function getUserWithProduct() {
   const user = await User.findOne({
     where: { id: 1 },
-    included: true,
+    include: Product,
   });
   console.log(user.get({ plain: true }));
 }
