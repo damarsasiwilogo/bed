@@ -1,63 +1,16 @@
-const { User } = require("./models");
-const { Op } = require("sequelize");
+const express = require("express");
+const PORT = 8000;
 
-async function create() {
-  const result = await User.bulkCreate([
-    {
-      username: "jaka",
-      email: "jaka@mail.com",
-      password: "gembung123!",
-      name: "Jaka Tarub",
-    },
-  ]);
-  console.log(result.get({ plain: true }));
-}
+const userRouter = require("./router/user");
 
-async function getAll() {
-  const result = await User.findAll({
-    attributes: {
-      exclude: ["password"],
-    },
-    where: {
-      username: {
-        [Op.like]: "%a%",
-      },
-    },
-    raw: true,
-  });
-  console.log(result);
-  return;
-}
+const app = express();
 
-async function update() {
-  const user = await User.findOne({
-    where: {
-      username: "jaka",
-    },
-  });
-  user.name = "Ajak Rutab";
-  await user.save();
-  console.log(user);
-  return;
-}
+app.get("/", (req, res) => {
+  res.send("session08 API");
+});
 
-async function deleteData() {
-  const result = await User.destroy({
-    where: {
-      id: 2,
-    },
-  });
-  console.log(result);
-  return;
-}
+app.use("/user", userRouter);
 
-// *relationship
-async function getUserWithProduct() {
-  const user = await User.findOne({
-    where: { id: 1 },
-    include: Product,
-  });
-  console.log(user.get({ plain: true }));
-}
-
-getAll();
+app.listen(PORT, () => {
+  console.log(`API start on port: ${PORT}`);
+});
