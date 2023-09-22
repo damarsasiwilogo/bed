@@ -11,11 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Tweet.belongsToMany(models.User,{through: 'Followers',foreignKey:'tweetId'})
     }
   }
   Tweet.init({
-    tweet: DataTypes.STRING,
+    content: DataTypes.TEXT,
     image: DataTypes.STRING
   }, {
     sequelize,

@@ -9,8 +9,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tweet: {
-        type: Sequelize.STRING
+      content: {
+        type: Sequelize.TEXT
       },
       image: {
         type: Sequelize.STRING

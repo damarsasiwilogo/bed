@@ -10,13 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Account.hasOne(models.Profile, { foreignKey: "accountID" });
+      // Account.hasMany(models.Profile, { foreignKey: "accountID"})
     }
   }
   Account.init(
     {
       email: DataTypes.STRING,
       username: DataTypes.STRING,
-      phone_number: DataTypes.NUMBER,
+      phone_number: DataTypes.STRING,
       password: DataTypes.STRING,
       password_confirmation: DataTypes.STRING,
     },
