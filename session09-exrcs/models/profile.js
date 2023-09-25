@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Profile.belongsTo(models.Account, { foreignKey: "accountID" });
+      Profile.belongsTo(models.Account, { foreignKey: "accountId" });
     }
   }
   Profile.init(
     {
-      accountID: DataTypes.NUMBER,
+      accountId: DataTypes.NUMBER,
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
       bio: DataTypes.STRING,

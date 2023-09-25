@@ -2,7 +2,7 @@ module.exports = {
   development: {
     username: "root",
     password: "13572468",
-    database: "sssion09-exrcs",
+    database: "socia-app",
     host: "localhost",
     dialect: "mysql",
   },

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Tweet.belongsTo(models.Account, { foreignKey: "accountID" });
+      Tweet.belongsTo(models.Account, { foreignKey: "accountId" });
     }
   }
   Tweet.init(
