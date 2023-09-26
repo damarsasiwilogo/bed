@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Account.hasOne(models.Profile, { foreignKey: "accountId" });
-      Account.hasMany(models.Tweet, { foreignKey: "accountId"})
+      Account.hasMany(models.Tweet, { foreignKey: "accountId" });
     }
   }
   Account.init(
     {
-      email: DataTypes.STRING,
       username: DataTypes.STRING,
-      phone_number: DataTypes.STRING,
+      email: DataTypes.STRING,
+      phoneNumber: DataTypes.STRING,
       password: DataTypes.STRING,
-      password_confirmation: DataTypes.STRING,
+      isVerified: DataTypes.BOOLEAN,
     },
     {
       sequelize,

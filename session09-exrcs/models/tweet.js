@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Tweet.init(
     {
-      content: DataTypes.TEXT,
-      image: DataTypes.STRING,
+      content: DataTypes.STRING,
+      imageURL: DataTypes.STRING,
     },
     {
       sequelize,
