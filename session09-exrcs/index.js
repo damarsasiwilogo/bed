@@ -4,7 +4,9 @@ const PORT = 8000;
 const app = express();
 app.use(express.json());
 
+const authRouter = require("./routes/auth");
 // routes
+app.use("/auth", authRouter);
 
 // 404 middleware
 app.use((req, res) => {
