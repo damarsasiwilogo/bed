@@ -1,8 +1,11 @@
 const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
-const { Account, Profile } = require("../models");
+const hbs = require("handlebars");
 const fs = require("fs");
+const { Account, Profile } = require("../models");
+const mailer = require("../lib/nodemailer");
+
 const JWT_SECRET_KEY = "ntar-pindah-ke-env";
 
 exports.handleRegister = async (req, res) => {
@@ -25,6 +28,22 @@ exports.handleRegister = async (req, res) => {
       firstName,
       accountId: result.id,
     });
+    
+    const templateRaw = fs.readFileSync(
+      __dirname + "/../templates/register.html",
+      "utf8"
+    );
+    const templateCompile = hbs.compile(templateRaw);
+    const emailHTML = templateCompile({
+      firstName: profile.firstName,
+    });
+    const resultEmail = await mailer.sendMail({
+      to: result.email,
+      from: "dummybro06@gmail.com",
+      subject: "Registrasi akun socia-app berhasil",
+      html: emailHTML,
+    });
+    console.log(resultEmail);
 
     res.json({
       ok: true,
