@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
 const { Account, Profile } = require("../models");
-
+const fs = require("fs");
 const JWT_SECRET_KEY = "ntar-pindah-ke-env";
 
 exports.handleRegister = async (req, res) => {
@@ -149,5 +149,31 @@ exports.updateProfile = async (req, res) => {
       message: String(error),
     });
     return;
+  }
+};
+
+exports.handleUploadPhotoProfile = async (req, res) => {
+  const { filename } = req.file;
+  const { id: accountId } = req.user;
+
+  try {
+    const profile = await Profile.findOne({ where: { accountId } });
+    if (profile.profilePicture) {
+      //delete old profile picture
+      fs.rmSync(__dirname + "/../public/" + profile.profilePicture);
+    }
+
+    profile.profilePicture = filename;
+    await profile.save();
+
+    res.json({
+      ok: true,
+      data: "Profile picture updated",
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      message: String(error),
+    });
   }
 };

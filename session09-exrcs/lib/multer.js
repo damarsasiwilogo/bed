@@ -4,13 +4,21 @@ const storage = multer.diskStorage({
   destination: (req, res, cb) => {
     cb(null, __dirname + "/../public");
   },
-  filename: (req, res, cb) => {
-    cb(null, "FILE-" + Date.now() + Math.round(Math.random * 10000)) + "." + req.file.mimetype.split("/")[1];
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      "FILE-" +
+        Date.now() +
+        Math.round(Math.random() * 10000) +
+        "." +
+        file.mimetype.split("/")[1]
+    );
   },
 });
 
-const fileFilter = (req, res, cb) => {
-  const { mimetype } = req.file;
+const fileFilter = (req, file, cb) => {
+  const { mimetype } = file;
+
   switch (mimetype) {
     case "image/jpeg":
     case "image/png":
@@ -23,4 +31,10 @@ const fileFilter = (req, res, cb) => {
   }
 };
 
-exports.multerUpload = multer({ storage, fileFilter });
+exports.multerUpload = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 1000000,
+  },
+});
