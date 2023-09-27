@@ -2,13 +2,17 @@ require("dotenv").config({
   path: __dirname + "/.env",
 });
 const express = require("express");
+const morgan = require("morgan");
 const PORT = 8000;
 
 const app = express();
 app.use(express.json());
+app.use(morgan("combined"));
 
 const authRouter = require("./routes/auth");
+const dogsRouter = require("./routes/dogs");
 // routes
+app.use("/dogs", dogsRouter);
 app.use("/auth", authRouter);
 
 // static file serving
