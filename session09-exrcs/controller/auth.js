@@ -6,7 +6,7 @@ const fs = require("fs");
 const { Account, Profile } = require("../models");
 const mailer = require("../lib/nodemailer");
 
-const JWT_SECRET_KEY = "ntar-pindah-ke-env";
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 exports.handleRegister = async (req, res) => {
   const { username, email, phoneNumber, password, firstName, lastName } =

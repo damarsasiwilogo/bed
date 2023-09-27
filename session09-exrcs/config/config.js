@@ -1,9 +1,13 @@
+require("dotenv").config({
+  path: __dirname + "/../.env",
+});
+
 module.exports = {
   development: {
-    username: "root",
-    password: "13572468",
-    database: "socia-app",
-    host: "localhost",
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
     dialect: "mysql",
   },
   test: {
